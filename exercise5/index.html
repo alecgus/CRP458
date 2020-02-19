@@ -37,18 +37,19 @@
             accessToken: 'pk.eyJ1IjoiYWxlY2d1cyIsImEiOiJjazZsa2lwbGcwYnJ0M2xwZjc3bzR6ajdwIn0.fv4kjtjsbNDyKRhUkl8xJA' 
         }).addTo(map);
 
-        L.marker([42.026111, -93.648333]).addTo(map)
-            .bindPopup("Iowa State University")
-            .openPopup();
-         L.marker([42.040209, -93.634203]).addTo(map)
-            .bindPopup("Ames High School")
-            .openPopup();
-        L.marker([42.105833, -93.645278]).addTo(map)
-            .bindPopup("Gilbert, IA")
-            .openPopup();
-        L.marker([42.061111, -93.886111]).addTo(map)
-            .bindPopup("Boone, IA")
-            .openPopup();
+        var towns = [
+            [42.026111, -93.648333, "Iowa State University"],
+            [42.040209, -93.634203, "Ames High School"],
+            [42.105833, -93.645278, "Gilbert, IA"],
+            [42.061111, -93.886111, "Boone, IA"]
+        ];
+        
+        for (var i =0; i < towns.length; i++) {
+            marker = new L.marker([towns[i][0], towns[i][1])
+            .bindPopup(towns[1][2])
+            .addTo(map);
+        }
+        
     </script>
 
 </body>
