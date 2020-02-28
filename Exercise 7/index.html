@@ -47,44 +47,6 @@
         transparent: true,
         attribution: "Weather data © 2012 IEM Nexrad"}); 
         
-  //----------Adding multiple town markers----------
-
-        //an array of towns
-        var towns = [
-            [42.040209, -93.634203, "Ames High School"],
-            [42.105833, -93.645278, "Gilbert, IA"],
-             [42.061111, -93.886111, "Boone, IA"]
-        ];
-
-        //loop through the array and add a marker for each
-        for (var i = 0; i < towns.length; i++) {
-            marker = new L.marker([towns[i][0], towns[i][1]])
-                .bindPopup(towns[i][2])
-                .addTo(map);
-        }
-
-
-        //----------Links below the Map----------
-
-        //Pan to Dubuque, IA
-        function dubuque() {
-            map.panTo(new L.LatLng(42.5, -90.69));
-        }
-
-        //set Zoom
-        function zoomOut() {
-            map.setZoom(8);
-        };
-
-
-        //add an event listener for a click event on the button
-        document.getElementById("clintonBtn").addEventListener("click", clinton);
-
-        //Clinton Iowa function
-        function clinton() {
-            map.setView(new L.LatLng(41.846944, -90.207222), 11);
-        };    
-    </script>
 
 </body>
 </html>
