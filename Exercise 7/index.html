@@ -84,37 +84,5 @@
             map.setView(new L.LatLng(41.846944, -90.207222), 11);
         };    
     </script>
-		<script type="text/javascript">
-		//OSM tiles attribution and URL
-		var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-		var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-		var osmAttrib = '&copy; ' + osmLink;
-		
-		//Carto tiles attribution and URL
-		var cartoLink = '<a href="http://cartodb.com/attributions">CartoDB</a>';
-		var cartoURL = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
-		var cartoAttrib = '&copy; ' + osmLink + ' &copy; ' + cartoLink;
-
-		//Creation of map tiles
-		var osmMap = L.tileLayer(osmURL, {attribution: osmAttrib});
-		var cartoMap = L.tileLayer(cartoURL, {attribution: cartoAttrib});
-
-		//Base layers definition and addition
-		var baseLayers = {
-			"OSM Mapnik": osmMap,
-			"Carto DarkMatter": cartoMap,
-		};
-	  
-		 //Add baseLayers to map as control layers
-		 L.control.layers(baseLayers).addTo(map);
-	</script>
-    
-  <script>
-  
-  L.circleMarker([42.040209, -93.634203], {radius: 43}).addTo(map);
-  
-  L.circle([42.105833, -93.645278], {radius: 1200}).addTo(map);
-  
-  </script>
 </body>
 </html>
