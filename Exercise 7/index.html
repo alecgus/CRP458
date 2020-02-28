@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="LA/CRP 458/558 Leaflet starter file - 2020">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Getting Started with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <style>
+        #map {
+            width: 700px;
+            height: 500px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+		<script type="text/javascript">
+		//OSM tiles attribution and URL
+		var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib = '&copy; ' + osmLink;
+		
+		//Carto tiles attribution and URL
+		var cartoLink = '<a href="http://cartodb.com/attributions">CartoDB</a>';
+		var cartoURL = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
+		var cartoAttrib = '&copy; ' + osmLink + ' &copy; ' + cartoLink;
+
+		//Creation of map tiles
+		var osmMap = L.tileLayer(osmURL, {attribution: osmAttrib});
+		var cartoMap = L.tileLayer(cartoURL, {attribution: cartoAttrib});
+
+		//Base layers definition and addition
+		var baseLayers = {
+			"OSM Mapnik": osmMap,
+			"Carto DarkMatter": cartoMap,
+		};
+	  
+		 //Add baseLayers to map as control layers
+		 L.control.layers(baseLayers).addTo(map);
+	</script>
+    
+  <script>
+  
+  L.circleMarker([42.040209, -93.634203], {radius: 43}).addTo(map);
+  
+  L.circle([42.105833, -93.645278], {radius: 1200}).addTo(map);
+  
+  </script>
+  
+    <br>Pan to <a href="javascript:dubuque()">Dubuque, Iowa</a><br>
+
+    <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
+
+    <button id="clintonBtn">Visit Clinton, Iowa</button>
+
+
+    <script>
+        var map = L.map('map').setView([42.0, -93.634], 11);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
+            accessToken: 'pk.eyJ1IjoiYWxlY2d1cyIsImEiOiJjazZsa2lwbGcwYnJ0M2xwZjc3bzR6ajdwIn0.fv4kjtjsbNDyKRhUkl8xJA' 
+        }).addTo(map);
+
+        L.marker([42.026111, -93.648333]).addTo(map)
+            .bindPopup("Iowa State University")
+            .openPopup();
+   
+  //----------Adding multiple town markers----------
+
+        //an array of towns
+        var towns = [
+            [42.040209, -93.634203, "Ames High School"],
+            [42.105833, -93.645278, "Gilbert, IA"],
+             [42.061111, -93.886111, "Boone, IA"]
+        ];
+
+        //loop through the array and add a marker for each
+        for (var i = 0; i < towns.length; i++) {
+            marker = new L.marker([towns[i][0], towns[i][1]])
+                .bindPopup(towns[i][2])
+                .addTo(map);
+        }
+
+
+        //----------Links below the Map----------
+
+        //Pan to Dubuque, IA
+        function dubuque() {
+            map.panTo(new L.LatLng(42.5, -90.69));
+        }
+
+        //set Zoom
+        function zoomOut() {
+            map.setZoom(8);
+        };
+
+
+        //add an event listener for a click event on the button
+        document.getElementById("clintonBtn").addEventListener("click", clinton);
+
+        //Clinton Iowa function
+        function clinton() {
+            map.setView(new L.LatLng(41.846944, -90.207222), 11);
+        };    
+    </script>
+
+</body>
+</html>
