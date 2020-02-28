@@ -25,7 +25,14 @@
 
 <body>
     <div id='map'></div>
-  
+    
+    <br>Pan to <a href="javascript:dubuque()">Dubuque, Iowa</a><br>
+
+    <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
+
+    <button id="clintonBtn">Visit Clinton, Iowa</button>
+
+
     <script>
         var map = L.map('map').setView([42.0, -93.634], 11);
 
@@ -37,10 +44,10 @@
             accessToken: 'pk.eyJ1IjoiYWxlY2d1cyIsImEiOiJjazZsa2lwbGcwYnJ0M2xwZjc3bzR6ajdwIn0.fv4kjtjsbNDyKRhUkl8xJA' 
         }).addTo(map);
 
-        L.circleMarker([42.026111, -93.648333], {radius: 43}).addTo(map);
+        L.marker([42.026111, -93.648333]).addTo(map)
+            .bindPopup("Iowa State University")
+            .openPopup();
    
-        L.circle([42.00185, -93.60], {radius: 1200}).addTo(map);
-        
   //----------Adding multiple town markers----------
 
         //an array of towns
@@ -57,7 +64,28 @@
                 .addTo(map);
         }
 
+
+        //----------Links below the Map----------
+
+        //Pan to Dubuque, IA
+        function dubuque() {
+            map.panTo(new L.LatLng(42.5, -90.69));
+        }
+
+        //set Zoom
+        function zoomOut() {
+            map.setZoom(8);
+        };
+
+
+        //add an event listener for a click event on the button
+        document.getElementById("clintonBtn").addEventListener("click", clinton);
+
+        //Clinton Iowa function
+        function clinton() {
+            map.setView(new L.LatLng(41.846944, -90.207222), 11);
         };    
     </script>
+
 </body>
 </html>
