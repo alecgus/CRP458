@@ -25,14 +25,7 @@
 
 <body>
     <div id='map'></div>
-    
-    <br>Pan to <a href="javascript:dubuque()">Dubuque, Iowa</a><br>
-
-    <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
-
-    <button id="clintonBtn">Visit Clinton, Iowa</button>
-
-
+  
     <script>
         var map = L.map('map').setView([42.0, -93.634], 11);
 
@@ -44,10 +37,11 @@
             accessToken: 'pk.eyJ1IjoiYWxlY2d1cyIsImEiOiJjazZsa2lwbGcwYnJ0M2xwZjc3bzR6ajdwIn0.fv4kjtjsbNDyKRhUkl8xJA' 
         }).addTo(map);
 
-        L.marker([42.026111, -93.648333]).addTo(map)
-            .bindPopup("Iowa State University")
-            .openPopup();
+        L.circleMarker([42.026111, -93.648333], {radius: 43}).addTo(map);
    
+        L.circle([42.00185, -93.60], {radius: 1200}).addTo(map);
+        
+        
   //----------Adding multiple town markers----------
 
         //an array of towns
